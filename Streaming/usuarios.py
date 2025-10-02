@@ -27,7 +27,7 @@ class Usuario:
         return (f"Usuário: {self.nome} | "
                 f"Número de Playlists: {self.playlists} | "
                 f"Quantidade de músicas no histórico: {self.historico} | "
-                f"Idetnificador único: {self.id} | "
+                f"Identificador único: {self.id} | "
                 f"Usuário criado em: {self.data_criacao}")
     
     #Métodos obrogatórios do exercício

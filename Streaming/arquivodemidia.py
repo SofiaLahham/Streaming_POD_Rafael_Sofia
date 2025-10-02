@@ -1,40 +1,9 @@
 # midia.py
 
+from audioop import avg
 from datetime import datetime
 from pathlib import Path
 
-# =========================
-# Utilitário simples de log
-# =========================
-_LOG_PATH = Path("logs") / "erros.log"
-
-def _log_error(msg: str) -> None:
-    """Registra mensagens de erro em logs/erros.log com timestamp."""
-    try:
-        _LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-        carimbo = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        with _LOG_PATH.open("a", encoding="utf-8") as f:
-            f.write(f"[{carimbo}] {msg}\n")
-    except Exception:
-        # Falha silenciosa de log para não quebrar o fluxo do programa.
-        pass
-
-
-def _fmt_duracao(segundos: int) -> str:
-    """Formata duração em segundos para mm:ss (ou hh:mm:ss se > 1h)."""
-    if segundos < 0:
-        segundos = 0
-    h = segundos // 3600
-    m = (segundos % 3600) // 60
-    s = segundos % 60
-    if h > 0:
-        return f"{h:01d}:{m:02d}:{s:02d}"
-    return f"{m:02d}:{s:02d}"
-
-
-# ======================
-# Classe base: Mídia
-# ======================
 class ArquivoDeMidia:
     """
     Classe de um arquivo de mídia genérico (música, podcast, álbum, etc.)
@@ -43,43 +12,37 @@ class ArquivoDeMidia:
     Atributos adicionais são definidos nas subclasses.
     """
 
+    registroMidia = []  # lista de instâncias de qualquer objeto de mídia
+    
     def __init__(self, titulo: str, duracao: int, artista: str, reproducoes: int = 0):
         
-        # Realizando validações e registrando os problemas em log
-        titulo_norm = (titulo or "").strip()
-        artista_norm = (artista or "").strip()
-
-        if not titulo_norm:
-            _log_error("ArquivoDeMidia: título vazio informado; usando 'Não informado'.")
-            titulo_norm = "Não informado"
-
-        if not artista_norm:
-            _log_error("ArquivoDeMidia: artista vazio informado; usando 'Não informado'.")
-            artista_norm = "Não informado"
-
-        if not isinstance(duracao, int):
-            _log_error(f"ArquivoDeMidia: duração não inteira '{duracao}'; convertendo para inteiro.")
-            duracao = int(duracao)
-
-        if duracao < 0:
-            _log_error(f"ArquivoDeMidia: duração negativa {duracao}; ajustando valor para 0.")
-            duracao = 0
-                
-        self.titulo = titulo_norm
+        self.titulo = titulo
         self.duracao = duracao               # duração em segundos (int)
-        self.artista = artista_norm
+        self.artista = artista
         self.reproducoes = reproducoes       # contador de execuções iniciado em zero
+   
+        # adiciona qualquer instância (música ou podcast) como objeto 
+        # em um registro geral de mídia
+        ArquivoDeMidia.registroMidia.append(self)
 
+    @classmethod
+    def buscar_por_titulo(cls, titulo: str):
+        t = titulo.strip().lower()
+        for m in cls.registroMidia:
+            if m.titulo.strip().lower() == t:
+                return m
+        return None
+   
     # Métodos obrigatórios especiais
     #  simula a execução do arquivo de mídia, mostra na tela as informações contendo título, artista e duração
     def reproduzir(self) -> None:
         """Simula a execução do arquivo de mídia, incrementando reproduções e exibindo info."""
         self.reproducoes += 1
-        print(f"-> Reproduzindo: '{self.titulo}' — {self.artista} [{_fmt_duracao(self.duracao)}]")
+        print(f"-> Reproduzindo: '{self.titulo}' — {self.artista} de {self.duracao} segundos. (Total de reproduções: {self.reproducoes})")
 
     #  Compara dois arquivos de mídia (mesmo título e artista).
     def __eq__(self, other) -> bool:
-        """Dois arquivos são iguais se título e artista forem iguai, ignora espaços e case."""
+        """Dois arquivos são iguais se título e artista forem iguais, ignora espaços e case."""
         # Trata comparação com outros tipos 
         if not isinstance(other, ArquivoDeMidia):
             return NotImplemented
@@ -136,15 +99,14 @@ class Musica(ArquivoDeMidia):
     # Métodos obrigatórios gerais
     # ToString
     def __str__(self) -> str:
-       # Calcula a média das avaliações
-        if self.avaliacoes:
-            avg = sum(self.avaliacoes) / len(self.avaliacoes)
-        else:
-            avg = 0
-       
-        return (f"A música {self.titulo} do {self.artista}, |"
-               f"estilo {self.genero} com duração de {self.duracao} segundos. |"
-               f"Possui {len(self.avaliacoes)} avaliações com média de: {avg:.2f}")
+        # Calcula a média das avaliações
+        avg = sum(self.avaliacoes) / len(self.avaliacoes) if self.avaliacoes else 0
+        # Formata a string com as informações da música
+        return (f"[Música] '{self.titulo}' — {self.artista} | "
+            f"Gênero: {self.genero} | "
+            f"Duração: {self.duracao}s | "
+            f"Reproduções: {self.reproducoes} | "
+            f"Avaliações: {len(self.avaliacoes)} (média {avg:.2f})")
 
     # Representação oficial
     def __repr__(self) -> str:
@@ -188,3 +150,15 @@ class Podcast(ArquivoDeMidia):
         return (f"Podcast(titulo='{self.titulo}', duracao={self.duracao}, artista='{self.artista}', "
                 f"episodio={self.episodio}, temporada='{self.temporada}', host='{self.host}', "
                 f"reproducoes={self.reproducoes})")
+
+
+
+m1 = Musica("Yesterday", 125, "The Beatles")
+m2 = Musica("Bohemian Rhapsody", 354, "Queen")
+
+print(len(ArquivoDeMidia.registroMidia))  
+# 2 (porque temos duas mídias criadas)
+
+achada = ArquivoDeMidia.buscar_por_titulo("Yesterday")
+print(achada)
+# imprime a instância de Musica "Yesterday"
