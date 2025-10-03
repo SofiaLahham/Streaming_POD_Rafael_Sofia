@@ -11,7 +11,7 @@ from pathlib import Path
 
 # Evita dependências externas; assume que Musica, Playlist e Usuario
 # já estão definidos no pacote Streaming
-from .arquivodemidia import ArquivoDeMidia  # para contexto de tipos/atributos
+from .arquivo_midia import ArquivoDeMidia  # para contexto de tipos/atributos
 from .playlist import Playlist
 from .usuarios import Usuario  # seu arquivo chama 'usuarios.py' (classe Usuario)
 

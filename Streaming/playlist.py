@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import datetime
-from arquivodemidia import ArquivoDeMidia
+from Streaming.arquivo_midia import ArquivoDeMidia
 
 
 # LOG_ERROS = Path("erros.log")

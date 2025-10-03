@@ -4,9 +4,9 @@ from pathlib import Path
 # Importações da classes do pacote
 from Streaming.menu import Menu
 from Streaming.usuarios import Usuario
-from Streaming.arquivodemidia import ArquivoDeMidia
-from Streaming.arquivodemidia import Musica
-from Streaming.arquivodemidia import Podcast
+from Streaming.arquivo_midia import ArquivoDeMidia
+from Streaming.arquivo_midia import Musica
+from Streaming.arquivo_midia import Podcast
 from Streaming.playlist import Playlist
 from Streaming.analises import Analises
 
@@ -43,16 +43,16 @@ class StreamingApp:
         caminho.parent.mkdir(parents=True, exist_ok=True)
         caminho.write_text("\n".join(linhas), encoding="utf-8")
         print("Relatório salvo em relatorios/relatorio.txt")
-
+1
 
 def main():
     menu = Menu()
     app = StreamingApp()
 
-    # (opcional) dados de exemplo para testar rápido
-    app.musicas.append(Musica("Song A", 180, "Artist X"))
-    app.musicas.append(Musica("Song B", 200, "Artist Y"))
-    app.podcasts.append(Podcast("Pod 1", 1200, "Host Z"))
+    # # (opcional) dados de exemplo para testar rápido
+    # app.musicas.append(Musica("Song A", 180, "Artist X"))
+    # app.musicas.append(Musica("Song B", 200, "Artist Y"))
+    # app.podcasts.append(Podcast("Pod 1", 1200, "Host Z"))
 
     usuarios = app.usuarios          # mantém compatibilidade com seu fluxo atual
     usuario_logado: Usuario | None = None

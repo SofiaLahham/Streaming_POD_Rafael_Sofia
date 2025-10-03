@@ -10,7 +10,7 @@ class Usuario:
         self.nome = nome.strip().title()  # Formata o nome
         self.playlists = []
         self.historico = []
-        qtde_instancias += 1
+        Usuario.qtde_instancias += 1
         #self.id = id(self)  # ID único baseado no endereço de memória do objeto
         self.data_criacao = datetime.now()
     
