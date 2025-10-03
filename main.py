@@ -8,6 +8,7 @@ from Streaming.arquivodemidia import ArquivoDeMidia
 from Streaming.arquivodemidia import Musica
 from Streaming.arquivodemidia import Podcast
 from Streaming.playlist import Playlist
+from Streaming.analises import Analises
 
 
 # Controlador do APP (local de toda a regra de negócio)
@@ -207,7 +208,15 @@ def main():
 
                 # "8": "Gerar relatório":
                 case "8":
-                    app.salvar_relatorio_txt()
+                    destino = Analises.salvar_relatorio(
+                        musicas=app.musicas,
+                        playlists=app.playlists,
+                        usuarios=app.usuarios,
+                        top_n=10,               
+                        pasta="Relatório",
+                        arquivo="relatorio.txt",
+                    )
+                    print(f"Relatório salvo em {destino}")
 
                 # "9": "Sair":
                 case "9":
