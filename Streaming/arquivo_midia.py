@@ -1,6 +1,5 @@
 # midia.py
 
-from audioop import avg
 from datetime import datetime
 from pathlib import Path
 
@@ -12,7 +11,11 @@ class ArquivoDeMidia:
     Atributos adicionais são definidos nas subclasses.
     """
 
-    registroMidia = []  # lista de instâncias de qualquer objeto de mídia
+    # Lista de instâncias de qualquer objeto de mídia
+    # Utilizado para busca por título da midia, tanto para música quanto podcast
+    # Utilizado na classe playlist para verificar se a mídia existe 
+    # Atributo de classe (compartilhado por todas as instâncias)
+    registroMidia = []  
     
     def __init__(self, titulo: str, duracao: int, artista: str, reproducoes: int = 0):
         
@@ -34,7 +37,8 @@ class ArquivoDeMidia:
         return None
    
     # Métodos obrigatórios especiais
-    #  simula a execução do arquivo de mídia, mostra na tela as informações contendo título, artista e duração
+    # Simula a execução do arquivo de mídia, mostra na tela as informações 
+    # contendo título, artista e duração
     def reproduzir(self) -> None:
         """Simula a execução do arquivo de mídia, incrementando reproduções e exibindo info."""
         self.reproducoes += 1

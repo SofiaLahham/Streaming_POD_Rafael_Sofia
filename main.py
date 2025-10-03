@@ -19,7 +19,7 @@ class StreamingApp:
         self.podcasts: list[Podcast] = []
         self.playlists: list[Playlist] = []
 
-    # --- comandos usados pelo menu ---
+    # Método para criar um novo usuário e adicioná-lo à lista
     def criar_novo_usuario(self, nome: str) -> Usuario:
         u = Usuario(nome)
         self.usuarios.append(u)
@@ -43,7 +43,6 @@ class StreamingApp:
         caminho.parent.mkdir(parents=True, exist_ok=True)
         caminho.write_text("\n".join(linhas), encoding="utf-8")
         print("Relatório salvo em relatorios/relatorio.txt")
-1
 
 def main():
     menu = Menu()
@@ -54,15 +53,17 @@ def main():
     # app.musicas.append(Musica("Song B", 200, "Artist Y"))
     # app.podcasts.append(Podcast("Pod 1", 1200, "Host Z"))
 
-    usuarios = app.usuarios          # mantém compatibilidade com seu fluxo atual
+    # Para manter a compatibilidade com fluxo atual
+    usuarios = app.usuarios          
     usuario_logado: Usuario | None = None
 
     while True:
         if not usuario_logado:
-            # --- MENU INICIAL (menu.py exibe; main.py controla) ---
+            # Manipulação do menu inicial: menu.py exibe; main.py controla
             opcao = menu.exibir_menu_inicial()
 
             match opcao:
+                # "1": "Fazer login":
                 case "1":
                     if not usuarios:
                         print("Nenhum usuário cadastrado. Crie um novo usuário primeiro.")
@@ -81,6 +82,7 @@ def main():
                         else:
                             print("Opção inválida.")
 
+                # "2": "Criar novo usuário":
                 case "2":
                     novo_nome = input("Digite o nome do novo usuário: ").strip()
                     if novo_nome:
@@ -89,6 +91,7 @@ def main():
                     else:
                         print("Nome de usuário não pode ser vazio.")
 
+                # "3": "Listar usuários":
                 case "3":
                     if not usuarios:
                         print("Nenhum usuário cadastrado.")
@@ -97,6 +100,7 @@ def main():
                         for u in usuarios:
                             print("-", u.nome)
 
+                # "4": "Sair do sistema":
                 case "4":
                     print("Saindo do sistema...")
                     return
@@ -105,7 +109,7 @@ def main():
                     print("Opção inválida. Tente novamente.")
 
         else:
-            # Menus se houver usuário: menu.py com print; main.py controla)
+            # Menus se houver usuário logado
             opcao = menu.exibir_menu_usuario(usuario_logado.nome)
 
             match opcao:
@@ -165,6 +169,7 @@ def main():
                     else:
                         print("Playlist não encontrada.")
 
+                # "6": "Criar nova playlist":
                 case "6":
                         nome = input("Nome da nova playlist: ").strip()
                         if not nome:
