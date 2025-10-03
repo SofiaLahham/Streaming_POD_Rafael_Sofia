@@ -11,8 +11,7 @@ class Usuario:
         self.playlists = []
         self.historico = []
         qtde_instancias += 1
-        #self.id = id(qtde_instancias)  # ID único baseado no contador de instâncias
-        self.id = id(self)  # ID único baseado no endereço de memória do objeto
+        #self.id = id(self)  # ID único baseado no endereço de memória do objeto
         self.data_criacao = datetime.now()
     
     # Métodos obrigatorios __str__ e __repr__
@@ -20,14 +19,14 @@ class Usuario:
         return (f"Usuário: {self.nome} | "
                 f"Listas de reprodução: {len(self.playlists)} | "
                 f"Musicas no histórico: {len(self.historico)} | "
-                f"ID: {self.id}, | "
+               # f"ID: {self.id}, | "
                 f"Criado em: {self.data_criacao.strftime('%Y-%m-%d %H:%M:%S')}")
     
     def __repr__(self):
         return (f"Usuário: {self.nome} | "
                 f"Número de Playlists: {self.playlists} | "
                 f"Quantidade de músicas no histórico: {self.historico} | "
-                f"Identificador único: {self.id} | "
+              #  f"Identificador único: {self.id} | "
                 f"Usuário criado em: {self.data_criacao}")
     
     #Métodos obrogatórios do exercício
