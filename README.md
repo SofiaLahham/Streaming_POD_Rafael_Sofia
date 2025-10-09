@@ -4,7 +4,7 @@ Sistema de streaming musical simplificado, inspirado em plataformas como o Spoti
 
 Alunos: Rafael Magalhães e Sofia Lahham
 
-Turma 11 - Programaçãoo Orientada a Dados (POD)
+Turma 11 - Programação Orientada a Dados (POD)
 
 Professor: Me. Otávio Parraga
 
@@ -25,3 +25,33 @@ Abaixo está a estrutura principal do repositório, organizada em módulos e sub
 - `config/` → arquivos `.md` com dados de exemplo e o script de leitura.  
 - `Relatório/` → pasta onde é gerado o relatório final em `.txt`.  
 - `outros/` → arquivos de apoio e enunciado do trabalho.
+
+## Funcionalidades do Sistema
+
+O projeto implementa as principais funcionalidades solicitadas no TG1, organizadas por categoria:
+
+### Usuários
+- Criação de novos usuários.  
+- Login e gerenciamento do usuário ativo.  
+- Histórico de músicas reproduzidas.
+
+### Músicas e Podcasts
+- Cadastro e reprodução de músicas e episódios de podcast.  
+- Armazenamento de informações como título, artista, duração e gênero.  
+- Sistema de avaliação de músicas (notas de 0 a 5).  
+
+### Playlists
+- Criação de playlists personalizadas associadas a cada usuário.  
+- Adição e remoção de mídias dentro das playlists.  
+- Reprodução completa das playlists.  
+- Concatenação de duas playlists com o operador `+`, unindo as mídias e somando as reproduções.  
+
+### Análises e Relatórios
+- Identificação das músicas mais reproduzidas.  
+- Usuário mais ativo do sistema.  
+- Playlist mais popular.  
+- Média de avaliações das músicas.  
+- Geração automática de relatório em `Relatório/relatorio.txt`.  
+
+### Inovação
+Durante a reprodução de músicas, o sistema exibe a **letra completa da faixa** na tela, tornando a experiência mais envolvente e interativa.
