@@ -36,6 +36,7 @@ Abaixo está a estrutura principal do repositório, organizada em módulos e sub
 
 Abaixo, um trecho do log gerado ao iniciar o sistema e importar os `.md` da pasta `config/` (modo `strict=False`):
 
+
 WARN: Duração inválida para podcast 'Cinema em Debate': '0'. Ignorado (strict=False).
 
 WARN: Playlist 'Relax' tem itens repetidos: ['Shape of You']. Mantendo uma ocorrência de cada.
