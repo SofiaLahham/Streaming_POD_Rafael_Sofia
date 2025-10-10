@@ -7,7 +7,9 @@ Permite cadastrar e reproduzir músicas e podcasts, criar playlists personalizad
 
 ## Alunos e Professor  
 **Alunos:** Rafael Magalhães e Sofia Lahham
+
 **Turma:** 11 – Programação Orientada a Dados (POD)  
+
 **Professor:** Me. Otávio Parraga
 
 ## Estrutura de Pastas do Projeto
