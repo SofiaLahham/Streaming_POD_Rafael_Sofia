@@ -112,3 +112,45 @@ Ele consolida todas as informações do sistema, apresentando:
 - Média de avaliações de cada música cadastrada.  
 
 O relatório é criado no formato `.txt` e atualizado a cada nova execução do sistema.
+
+## Funcionalidades do Sistema
+
+O sistema implementa as funcionalidades exigidas no TG1, organizadas em categorias.
+
+### Usuários
+- Criação e login de usuários.
+- Registro do histórico de mídias reproduzidas.
+- Associação de playlists ao usuário logado.
+- Implementado em `Streaming/usuario.py`.
+
+### Mídias (músicas e podcasts no mesmo módulo)
+- As classes `Musica` e `Podcast` são definidas no **mesmo arquivo**: `Streaming/arquivo_midia.py`.
+- Ambas herdam de `ArquivoDeMidia`, compartilhando atributos e métodos como `reproduzir()`, `__str__` e `__repr__`.
+- `Musica` possui sistema de **avaliações** (0 a 5).
+- Durante a reprodução de músicas, o sistema exibe a **letra completa** da faixa (arquivos `.txt` em `config/`).
+
+### Playlists
+- Criação de playlists personalizadas por usuário.
+- Adição e remoção de mídias por título (busca em `ArquivoDeMidia.registroMidia`).
+- Reprodução completa da playlist.
+- Concatenação de duas playlists com o operador `+`, unindo as mídias e somando as reproduções.
+- Implementado em `Streaming/playlist.py`.
+
+### Análises e Relatórios
+- Top músicas por reproduções.
+- Playlist mais popular.
+- Usuário mais ativo (pelo histórico).
+- Média de avaliações por música.
+- Geração automática de `relatorios/relatorio.txt`.
+- Implementado em `Streaming/analises.py`.
+
+### Importação de Dados (Markdown)
+- Leitura dos arquivos `.md` em `config/` para cadastrar usuários, mídias e playlists.
+- Deduplicação por chave (nome/título) e validação com avisos/erros.
+- Controlado por `config/lermarkdown.py` e pela função `importar_markdowns_para_main` em `main.py`.
+
+## Inovação
+
+Durante a reprodução de músicas, o sistema exibe a **letra completa da faixa** diretamente no terminal, tornando a experiência mais interativa e visual.  
+Além disso, o programa utiliza leitura de arquivos Markdown para cadastrar automaticamente usuários, playlists e mídias, garantindo flexibilidade e escalabilidade no carregamento de dados.
+
