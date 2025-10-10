@@ -63,9 +63,6 @@ Novas músicas: 5
 Novos podcasts: 3
 Novas playlists: 5
 
-markdown
-Copiar código
-
 **Observações técnicas**  
 - Os arquivos `.md` com valores inválidos são **ajustados ou ignorados** com aviso (`WARN`).  
 - Itens inexistentes em playlists são **removidos** com registro de **erro** (`ERRO`).  
