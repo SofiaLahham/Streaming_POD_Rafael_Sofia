@@ -1,5 +1,5 @@
 ## TG1 – Streaming de Música  
-Trabalho final da disciplina **Programação Orientada a Dados – PUCRS**
+Trabalho da disciplina **Programação Orientada a Dados – PUCRS**
 
 ## Descrição  
 Sistema de streaming musical simplificado, inspirado em plataformas como o Spotify.  
