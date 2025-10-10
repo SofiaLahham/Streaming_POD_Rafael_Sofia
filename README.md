@@ -23,3 +23,92 @@ Abaixo está a estrutura principal do repositório, organizada em módulos e sub
 - `relatorios/` → pasta onde é gerado o relatório final em `.txt`.  
 - `logs/` → armazena erros do sistema.  
 - `outros/` → arquivos de apoio e enunciado do trabalho.
+
+## Como Executar o Projeto
+
+1. Abra o terminal no diretório principal do projeto.  
+2. Execute o comando:
+   python main.py
+
+## Execução e Importação de Dados (log)
+
+Abaixo, um trecho do log gerado ao iniciar o sistema e importar os `.md` da pasta `config/` (modo `strict=False`):
+
+WARN: Duração inválida para podcast 'Cinema em Debate': '0'. Ignorado (strict=False).
+
+WARN: Playlist 'Relax' tem itens repetidos: ['Shape of You']. Mantendo uma ocorrência de cada.
+
+WARN: Playlist 'Chill' ignorada: usuário 'joão' inexistente no banco de dados.
+
+WARN: Playlist 'Favoritas' contém itens inexistentes: ['Shape of You', 'Música Inexistente']. Ignorados.
+
+WARN: Playlist 'Treino' contém itens inexistentes: ['Rolling in the Deep']. Ignorados.
+
+WARN: Playlist 'Relax' contém itens inexistentes: ['Shape of You']. Ignorados.
+
+ERRO: Playlist 'Favoritas' contém item inexistente 'Shape of You'; removido.
+
+ERRO: Playlist 'Favoritas' contém item inexistente 'Música Inexistente'; removido.
+
+ERRO: Playlist 'Treino' contém item inexistente 'Rolling in the Deep'; removido.
+
+ERRO: Playlist 'Relax' contém item inexistente 'Shape of You'; removido.
+
+--- Importação concluída ---
+Novos usuários: 3
+Novas músicas: 5
+Novos podcasts: 3
+Novas playlists: 5
+
+markdown
+Copiar código
+
+**Observações técnicas**  
+- Os arquivos `.md` com valores inválidos são **ajustados ou ignorados** com aviso (`WARN`).  
+- Itens inexistentes em playlists são **removidos** com registro de **erro** (`ERRO`).  
+- Usuários referenciados que não existem são **ignorados** na criação de playlists.  
+- A importação **continua** mesmo com inconsistências porque o parser está em `strict=False`.
+
+  ## Menu Inicial
+
+<img width="220" height="114" alt="image" src="https://github.com/user-attachments/assets/f9b98bff-1d92-4a9f-b04d-2e2e086934e6" />
+
+O sistema inicia exibindo o menu principal com as opções:
+1) Entrar como usuário, 2) Criar novo usuário, 3) Listar usuários, 4) Sair.
+
+
+## Menu do Usuário
+
+<img width="369" height="218" alt="image" src="https://github.com/user-attachments/assets/372b6a70-7990-441a-acde-fab040b5a59d" />
+
+Após realizar o login, o sistema exibe o **Menu do Usuário**, responsável pelas principais operações do sistema.  
+Cada opção representa uma funcionalidade prevista no TG1:
+
+1. Reproduzir uma música  
+2. Listar músicas  
+3. Listar podcasts  
+4. Listar playlists  
+5. Reproduzir uma playlist  
+6. Criar nova playlist  
+7. Concatenar playlists  
+8. Gerar relatório  
+9. Carregar dados via arquivos Markdown  
+10. Sair  
+
+Essas opções são controladas pela classe `Menu`, localizada no pacote `Streaming/`, que gerencia as interações entre o usuário e as demais classes.
+
+
+## Relatório Gerado
+
+<img width="560" height="614" alt="image" src="https://github.com/user-attachments/assets/546e16f8-868e-4e27-be60-18214eea5c4e" />
+
+O arquivo `relatorios/relatorio.txt` é gerado automaticamente pela classe `Analises`.  
+Ele consolida todas as informações do sistema, apresentando:
+
+- Total de usuários, músicas e playlists.  
+- Top 10 músicas mais reproduzidas.  
+- Playlist mais popular, com nome, criador e número de itens.  
+- Usuário mais ativo, com base no histórico de reproduções.  
+- Média de avaliações de cada música cadastrada.  
+
+O relatório é criado no formato `.txt` e atualizado a cada nova execução do sistema.
