@@ -30,7 +30,7 @@ Abaixo está a estrutura principal do repositório, organizada em módulos e sub
 
 1. Abra o terminal no diretório principal do projeto.  
 2. Execute o comando:
-   **python main.py**
+   'python main.py'
 
 ## Execução e Importação de Dados (log)
 
