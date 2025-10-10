@@ -69,7 +69,7 @@ Copiar código
 - Usuários referenciados que não existem são **ignorados** na criação de playlists.  
 - A importação **continua** mesmo com inconsistências porque o parser está em `strict=False`.
 
-  ## Menu Inicial
+## Menu Inicial
 
 <img width="220" height="114" alt="image" src="https://github.com/user-attachments/assets/f9b98bff-1d92-4a9f-b04d-2e2e086934e6" />
 
@@ -149,8 +149,39 @@ O sistema implementa as funcionalidades exigidas no TG1, organizadas em categori
 - Deduplicação por chave (nome/título) e validação com avisos/erros.
 - Controlado por `config/lermarkdown.py` e pela função `importar_markdowns_para_main` em `main.py`.
 
-## Inovação
+### Inovação
 
 Durante a reprodução de músicas, o sistema exibe a **letra completa da faixa** diretamente no terminal, tornando a experiência mais interativa e visual.  
 Além disso, o programa utiliza leitura de arquivos Markdown para cadastrar automaticamente usuários, playlists e mídias, garantindo flexibilidade e escalabilidade no carregamento de dados.
 
+
+
+## Demonstrações do Sistema
+
+### Reprodução de Música
+Abaixo estão alguns exemplos visuais do sistema em execução, ilustrando as principais etapas de funcionamento do projeto TG1 – Streaming de Música.
+
+<img width="809" height="906" alt="image" src="https://github.com/user-attachments/assets/f5c3705f-1b0d-448e-a9ab-88a93dab1a1a" />
+
+<img width="642" height="903" alt="image" src="https://github.com/user-attachments/assets/9ee24eff-42ab-40ec-84d7-070a6f407e68" />
+
+<img width="564" height="306" alt="image" src="https://github.com/user-attachments/assets/d27692f7-6e20-4f83-99ec-92c658b1e4e2" />
+
+
+Durante a execução de uma música, o sistema exibe o título, artista, duração e letra completa da faixa — recurso desenvolvido como inovação no projeto.  
+Ao final da reprodução, o usuário é convidado a **avaliar a música** com uma nota de 0 a 5, registrada automaticamente no atributo `avaliacoes` da classe `Musica`.
+
+Este comportamento é implementado no arquivo `Streaming/arquivo_midia.py`, dentro dos métodos:
+- `reproduzir()` → responsável por imprimir a letra e incrementar o contador de reproduções;  
+- `avaliar()` → solicita a avaliação do usuário e atualiza a média da faixa.
+
+
+### Criação de Nova Playlist
+
+O usuário logado pode criar uma nova playlist personalizada informando um nome.  
+Após a confirmação, o sistema pergunta se o usuário deseja **adicionar mídias imediatamente**, permitindo incluir músicas ou podcasts existentes por título.
+
+Neste exemplo, foi criada a playlist `PlaylistTeste` com a música “Shape of You”.  
+Essa funcionalidade é implementada no método `criar_playlist()` da classe `Usuario` e controlada pela opção **6** do menu do usuário no `main.py`.
+
+<img width="495" height="335" alt="image" src="https://github.com/user-attachments/assets/40f485e0-9011-4927-9a12-3168f77beec0" />
