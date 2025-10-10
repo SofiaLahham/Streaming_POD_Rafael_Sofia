@@ -14,7 +14,7 @@ Permite cadastrar e reproduzir músicas e podcasts, criar playlists personalizad
 
 Abaixo está a estrutura principal do repositório, organizada em módulos e subpastas:
 
-![estrutura](<img width="289" height="774" alt="image" src="https://github.com/user-attachments/assets/e028a680-c98c-4d94-93ae-7d5247a3b292" />)
+<img width="289" height="774" alt="image" src="https://github.com/user-attachments/assets/e028a680-c98c-4d94-93ae-7d5247a3b292" />
 
 **Descrição:**
 - `main.py` → ponto de entrada do sistema (onde o programa inicia).  
